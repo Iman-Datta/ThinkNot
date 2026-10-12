@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
   View,
   Text,
@@ -9,34 +8,55 @@ import {
   Alert,
 } from "react-native";
 
+import {
+  Scale,
+  Salad,
+  FileText,
+  BellRing,
+  UserRound,
+  ChevronRight,
+  ArrowUpRight,
+  HeartPulse,
+  Sparkles,
+  ShieldCheck,
+} from "lucide-react-native";
+
 const FEATURES = [
   {
     id: "bmi",
-    icon: "⚖️",
     title: "BMI Calculator",
     description: "Understand your body metrics",
-    color: "bg-indigo-100",
+    tag: "HEALTH",
+    Icon: Scale,
+    color: "#E8F1FF",
+    iconColor: "#4169C9",
   },
   {
     id: "diet",
-    icon: "🥗",
     title: "Diet Planner",
-    description: "Personalized nutrition planning",
-    color: "bg-emerald-100",
+    description: "Build a diet around your routine",
+    tag: "NUTRITION",
+    Icon: Salad,
+    color: "#E4F7EC",
+    iconColor: "#238653",
   },
   {
     id: "prescription",
-    icon: "📄",
     title: "Prescription Scanner",
-    description: "Digitize your prescriptions",
-    color: "bg-orange-100",
+    description: "Organize your prescriptions",
+    tag: "MEDICINES",
+    Icon: FileText,
+    color: "#F0E8FF",
+    iconColor: "#8153C7",
   },
   {
     id: "medicine",
-    icon: "💊",
     title: "Medicine Reminders",
-    description: "Keep track of your medicines",
-    color: "bg-pink-100",
+    description: "Keep track of your schedule",
+    tag: "REMINDERS",
+    Icon: BellRing,
+    color: "#FFF0DE",
+    iconColor: "#C77722",
   },
 ];
 
@@ -46,145 +66,179 @@ export default function HomePage() {
   };
 
   return (
-    <View className="flex-1 bg-[#F7F7FC]">
-      <StatusBar barStyle="dark-content" backgroundColor="#F7F7FC" />
+    <View className="flex-1 bg-[#F7F8FC]">
+      <StatusBar barStyle="dark-content" backgroundColor="#F7F8FC" />
 
       <ScrollView
+        className="flex-1"
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 32 }}
+        contentContainerStyle={{
+          paddingHorizontal: 22,
+          paddingTop: 18,
+          paddingBottom: 36,
+        }}
       >
-        <View className="px-5 pt-4">
-          {/* Header */}
-          <View className="mb-8 flex-row items-center justify-between">
-            <View>
-              <Text className="text-[27px] font-extrabold tracking-tight text-[#20264F]">
-                Think
-                <Text className="text-[#7774E8]">Not.</Text>
-              </Text>
+        {/* Header */}
+        <View className="mb-9 flex-row items-center justify-between">
+          <View className="flex-row items-center gap-[11px]">
+            <View className="h-[43px] w-[43px] items-center justify-center rounded-[14px] bg-[#303D83]">
+              <HeartPulse size={25} color="#FFFFFF" strokeWidth={2.2} />
+            </View>
 
-              <Text className="mt-0.5 text-[9px] font-bold tracking-widest text-[#898BA3]">
-                YOUR PERSONAL HEALTH COMPANION
+            <View>
+              <Text className="text-[21px] font-extrabold tracking-[-0.6px] text-[#202B42]">
+                ThinkNot
+              </Text>
+              <Text className="mt-[3px] text-[8px] font-bold tracking-[1px] text-[#7D879C]">
+                YOUR EVERYDAY HEALTH COMPANION
+              </Text>
+            </View>
+          </View>
+
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="Profile"
+            className="h-[42px] w-[42px] items-center justify-center rounded-full bg-[#E6EAF7]"
+            onPress={() => handlePress("Profile")}
+          >
+            <UserRound size={21} color="#303D83" strokeWidth={2} />
+          </Pressable>
+        </View>
+
+        {/* Welcome */}
+        <View className="mb-[25px]">
+          <Text className="mb-[13px] text-[10px] font-extrabold tracking-[2px] text-[#7774E8]">
+            YOUR HEALTH, SIMPLIFIED
+          </Text>
+
+          <Text className="text-[34px] font-extrabold leading-[41px] tracking-[-1.3px] text-[#202B42]">
+            Take care of yourself.{" "}
+            <Text className="text-[#7774E8]">We'll help.</Text>
+          </Text>
+
+          <Text className="mt-[13px] text-[14px] leading-[22px] text-[#737E92]">
+            Track your health, plan your meals, and keep your medicines
+            organized in one place.
+          </Text>
+        </View>
+
+        {/* Daily health card */}
+        <View className="mb-8 flex-row items-center overflow-hidden rounded-[24px] bg-[#303D83] p-[22px]">
+          <View className="flex-1 pr-3">
+            <View className="mb-3 flex-row items-center gap-1.5">
+              <Sparkles size={13} color="#D7DEFF" />
+              <Text className="text-[9px] font-extrabold tracking-[1.2px] text-[#D7DEFF]">
+                A LITTLE CARE, EVERY DAY
               </Text>
             </View>
 
+            <Text className="text-[22px] font-extrabold leading-[28px] text-white">
+              Your health journey starts here.
+            </Text>
+
+            <Text className="mt-[9px] text-[12px] leading-[19px] text-[#E0E7FF]">
+              Small steps today can make a difference tomorrow.
+            </Text>
+
             <Pressable
-              onPress={() => handlePress("Profile")}
-              className="h-11 w-11 items-center justify-center rounded-2xl border border-[#ECECF4] bg-white"
+              onPress={() => handlePress("Daily Health Check")}
+              className="mt-4 flex-row items-center gap-2 self-start rounded-xl bg-white px-4 py-3"
             >
-              <Text className="text-xl">👤</Text>
+              <Text className="text-xs font-extrabold text-[#303D83]">
+                Explore your health
+              </Text>
+              <ArrowUpRight size={15} color="#303D83" />
             </Pressable>
           </View>
 
-          {/* Welcome */}
-          <View className="mb-6">
-            <Text className="mb-3 text-[10px] font-extrabold tracking-[2px] text-[#7774E8]">
-              YOUR HEALTH, SIMPLIFIED
-            </Text>
+          <View className="h-[58px] w-[58px] items-center justify-center rounded-[19px] bg-[#46559A]">
+            <HeartPulse size={32} color="#FFFFFF" strokeWidth={1.7} />
+          </View>
+        </View>
 
-            <Text className="text-[29px] font-extrabold leading-[37px] tracking-tight text-[#20264F]">
-              Take care of yourself,{"\n"}
-              <Text className="text-[#7774E8]">one day at a time.</Text>
+        {/* Features heading */}
+        <View className="mb-[18px] flex-row items-center justify-between">
+          <View>
+            <Text className="text-[21px] font-extrabold tracking-[-0.5px] text-[#202B42]">
+              Your health tools
             </Text>
-
-            <Text className="mt-2.5 text-sm leading-5 text-[#898BA3]">
-              Small steps today. A healthier you tomorrow.
+            <Text className="mt-[5px] text-[12px] text-[#7D879C]">
+              Everything you need, right here.
             </Text>
           </View>
 
-          {/* Hero Card */}
-          <View className="relative mb-8 min-h-[242px] overflow-hidden rounded-[25px] bg-[#20264F] p-5">
-            <View className="absolute -right-3 top-16 h-[105px] w-[105px] items-center justify-center rounded-full bg-[#343960]">
-              <Text className="text-[43px]">💜</Text>
-
-              <View className="absolute left-2 top-1 h-3 w-3 rounded-full bg-[#BEBBFF]" />
-            </View>
-
-            <View className="z-10">
-              <View className="mb-4 self-start rounded-full bg-[#383D69] px-3 py-2">
-                <Text className="text-[9px] font-extrabold tracking-wide text-[#DAD8FF]">
-                  ✦ YOUR DAILY CARE
-                </Text>
-              </View>
-
-              <Text className="text-[22px] font-extrabold leading-[29px] text-white">
-                Your health journey{"\n"}
-                starts here.
-              </Text>
-
-              <Text className="mt-2 max-w-[220px] text-xs leading-[17px] text-[#C2C4DE]">
-                Build healthier habits with tools designed around you.
-              </Text>
-
-              <Pressable
-                onPress={() => handlePress("Daily Health Check")}
-                className="mt-4 self-start rounded-xl bg-[#C7C4FF] px-4 py-3"
-              >
-                <Text className="text-xs font-extrabold text-[#20264F]">
-                  Get started →
-                </Text>
-              </Pressable>
-            </View>
-          </View>
-
-          {/* Feature Heading */}
-          <View className="mb-4">
-            <Text className="text-xl font-extrabold tracking-tight text-[#20264F]">
-              Your health toolkit
-            </Text>
-
-            <Text className="mt-1 text-xs text-[#898BA3]">
-              Everything you need, in one place.
+          <View className="rounded-full bg-[#E8EAFE] px-2.5 py-1.5">
+            <Text className="text-[9px] font-extrabold tracking-wide text-[#4956A0]">
+              04 TOOLS
             </Text>
           </View>
+        </View>
 
-          {/* Feature Cards */}
-          <View className="flex-row flex-wrap justify-between gap-y-3">
-            {FEATURES.map((feature) => (
+        {/* Feature cards */}
+        <View className="gap-[13px]">
+          {FEATURES.map((feature) => {
+            const Icon = feature.Icon;
+
+            return (
               <Pressable
                 key={feature.id}
+                accessibilityRole="button"
+                accessibilityLabel={feature.title}
+                className="flex-row items-center gap-[13px] rounded-[19px] border border-[#EDF0F6] bg-white p-[15px] active:opacity-75"
                 onPress={() => handlePress(feature.title)}
-                className="min-h-[176px] w-[48.2%] rounded-[20px] border border-[#ECECF4] bg-white p-4 active:opacity-70"
               >
-                <View className="mb-4 flex-row items-center justify-between">
-                  <View
-                    className={`h-11 w-11 items-center justify-center rounded-2xl ${feature.color}`}
-                  >
-                    <Text className="text-[22px]">{feature.icon}</Text>
-                  </View>
-
-                  <Text className="text-lg font-bold text-[#7774E8]">↗</Text>
+                <View
+                  className="h-[53px] w-[53px] items-center justify-center rounded-[16px]"
+                  style={{ backgroundColor: feature.color }}
+                >
+                  <Icon size={25} color={feature.iconColor} strokeWidth={1.9} />
                 </View>
 
-                <Text className="text-sm font-extrabold leading-5 text-[#20264F]">
-                  {feature.title}
-                </Text>
+                <View className="flex-1">
+                  <Text className="mb-1 text-[8px] font-extrabold tracking-[1.3px] text-[#8590A5]">
+                    {feature.tag}
+                  </Text>
 
-                <Text className="mt-1.5 pr-1 text-[11px] leading-4 text-[#898BA3]">
-                  {feature.description}
-                </Text>
+                  <Text className="text-[15px] font-extrabold text-[#202B42]">
+                    {feature.title}
+                  </Text>
+
+                  <Text className="mt-1 text-[11px] leading-[17px] text-[#7D879C]">
+                    {feature.description}
+                  </Text>
+                </View>
+
+                <ChevronRight size={21} color="#A2ABC0" strokeWidth={1.8} />
               </Pressable>
-            ))}
+            );
+          })}
+        </View>
+
+        {/* Health reminder */}
+        <View className="mt-[25px] flex-row items-start gap-3 rounded-[19px] border border-[#E6E7FA] bg-[#F0F0FF] p-4">
+          <View className="h-9 w-9 items-center justify-center rounded-xl bg-white">
+            <ShieldCheck size={20} color="#6564C9" />
           </View>
 
-          {/* Daily Reminder */}
-          <View className="mt-6 flex-row items-start rounded-[18px] bg-[#EAE9FF] p-4">
-            <Text className="mr-3 text-2xl text-[#7774E8]">✦</Text>
-
-            <View className="flex-1">
-              <Text className="mb-1 text-sm font-extrabold text-[#20264F]">
-                A little reminder
-              </Text>
-
-              <Text className="text-xs leading-5 text-[#626582]">
-                You don't have to do everything today. Just take one healthy
-                step.
-              </Text>
-            </View>
+          <View className="flex-1">
+            <Text className="text-[13px] font-extrabold text-[#30375E]">
+              Your health, your priority
+            </Text>
+            <Text className="mt-1 text-[11px] leading-[18px] text-[#737E92]">
+              Build healthy routines, stay organized, and take things one step
+              at a time.
+            </Text>
           </View>
+        </View>
 
-          {/* Footer */}
-          <Text className="mt-6 text-center text-[9px] font-bold tracking-[2px] text-[#A3A4B8]">
-            MADE WITH CARE • THINKNOT
+        {/* Footer */}
+        <View className="mt-[30px] items-center border-t border-[#E7EAF2] pt-[22px]">
+          <Text className="text-center text-[12px] font-bold text-[#4C5870]">
+            A healthier day, one step at a time.
+          </Text>
+
+          <Text className="mt-[7px] text-[10px] text-[#929BAE]">
+            ThinkNot · Your health, in your hands.
           </Text>
         </View>
       </ScrollView>
